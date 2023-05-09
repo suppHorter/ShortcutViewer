@@ -1,0 +1,3 @@
+keyboard
+win32gui
+# pyautogui
