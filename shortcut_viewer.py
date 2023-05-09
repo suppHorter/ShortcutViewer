@@ -1,7 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageDraw, ImageFont, ImageTk
 import keyboard
-import win32gui
+from win32 import win32gui
 
 CONTROL_KEYS = [
     'nach-links',
@@ -59,8 +59,12 @@ window.config(bg="#f0f0f0")
 hwnd = win32gui.GetParent(window.winfo_id())
 
 # Make the window visible on all virtual desktops
-win32gui.SetWindowLong(hwnd, win32gui.GWL_EXSTYLE, win32gui.GetWindowLong(hwnd, win32gui.GWL_EXSTYLE) | win32gui.WS_EX_TOOLWINDOW | win32gui.WS_EX_APPWINDOW)
+# TODO: get correct values for the defines
+# (needed to show window on all virtual desctops)
+# win32gui.SetWindowLong(hwnd, win32gui.GWL_EXSTYLE, win32gui.GetWindowLong(hwnd, win32gui.GWL_EXSTYLE) | win32gui.WS_EX_TOOLWINDOW | win32gui.WS_EX_APPWINDOW)
 
+
+win32gui.SetWindowLong(hwnd, -20, win32gui.GetWindowLong(hwnd, -20) | 0x00000080 | 0x00040000)
 
 def display_text(text, timeout="3000"):
     # Create a label widget with the given text
